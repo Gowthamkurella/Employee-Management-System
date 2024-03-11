@@ -1,24 +1,60 @@
 import React, { useEffect, useState } from 'react';
+import CustomAppBar from './appbar';
+import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import LoadingIndicator from './loading';
 
 function Dashboard() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true); // Assume user is logged in
-    const navigate = useNavigate();
-  
-    useEffect(() => {
-      // Here, you'd check if the session exists. For now, we'll mock it.
-      // If no session, redirect to the error page
-      if (!isLoggedIn) {
-        navigate('/error');
+  const navigate = useNavigate();
+  const [userDetails, setUserDetails] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/dashboard', {
+          method: 'GET',
+          credentials: 'include', // Important for sending cookies
+        });
+        const data = await response.json();
+        console.log(data)
+        if (response.ok) {
+          setUserDetails(data.userDetails);
+        } else {
+          navigate('/'); // Redirect if not authenticated
+        }
+      } catch (error) {
+        console.error('Failed to fetch user details:', error);
+        navigate('/'); // Redirect in case of failure
       }
-    }, [isLoggedIn, navigate]);
-    const user = localStorage.getItem('user');
+      setIsLoading(false); 
+    };
+
+    fetchUserDetails();
+  }, [navigate]);
+
+  if (isLoading) {
+    return <LoadingIndicator />;
+  }
+
+
   return (
-    <div>
-      <h2>Dashboard</h2>
-      <p>Welcome, {user}</p>
-      {/* Additional dashboard content */}
-    </div>
+    <>
+    <CustomAppBar username={userDetails.username.f_userName} />
+    <Box sx={{ 
+  display: 'flex', 
+  justifyContent: 'center', 
+  alignItems: 'center', 
+  height: '100vh' // This will make it center vertically as well
+}}>
+  <Typography variant="h2" component="h1" sx={{ 
+    fontWeight: 'bold', 
+    textAlign: 'center', 
+    color: 'black' // Adjust the color according to your theme
+  }}>
+    Welcome to the Admin Panel
+  </Typography>
+</Box>
+  </>
   );
 }
 
