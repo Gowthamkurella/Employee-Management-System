@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 const defaultSessionSecret = "mydefaultsecretkey";
 const PORT = process.env.PORT || 5000;
 const corsOptions = {
-  origin: 'https://employee-management-system-three-kappa.vercel.app/',
+  origin: 'https://employee-management-system-lr1k.onrender.com/',
   credentials: true, // Explicitly allow your frontend origin
   // Allow credentials
 };
