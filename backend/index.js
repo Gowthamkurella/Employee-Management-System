@@ -21,9 +21,10 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-
-
-
+app.use((req, res, next) => {
+  console.log('CORS Headers Set: ', res.getHeaders());
+  next();
+});
 
 const ObjectId = mongoose.Types.ObjectId;
 dotenv.config();
