@@ -13,6 +13,15 @@ const emp = require('./models/t_employee');
 const AWS = require("aws-sdk");
 const multer = require("multer");
 
+const corsOptions = {
+  origin: 'https://employee-management-system-lr1k.onrender.com',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Adjust methods as per your requirements
+  allowedHeaders: ['Content-Type', 'Authorization']  // Adjust headers as per your requirements
+};
+app.use(cors(corsOptions));
+
+
 
 const ObjectId = mongoose.Types.ObjectId;
 dotenv.config();
@@ -21,14 +30,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const defaultSessionSecret = "mydefaultsecretkey";
 const PORT = process.env.PORT || 5000;
-const corsOptions = {
-  origin: 'https://employee-management-system-lr1k.onrender.com',
-  credentials: true, // Explicitly allow your frontend origin
-  // Allow credentials
-};
-
-// Use cors middleware with the specified options
-app.use(cors(corsOptions));
 
 app.use(session({
   secret: defaultSessionSecret,
