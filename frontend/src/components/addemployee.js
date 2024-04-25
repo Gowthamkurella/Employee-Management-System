@@ -45,7 +45,7 @@ export default function AddEmployeeForm() {
         // Example: Validate email format
         const checkEmailDuplicate = async (email) => {
             try {
-                const response = await fetch('http://localhost:5000/check-email', {
+                const response = await fetch('https://employee-management-system-three-kappa.vercel.app/check-email', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export default function AddEmployeeForm() {
         formData.append('image', employee.image);
 
         try {
-            const response = await fetch('http://localhost:5000/addemployees', {
+            const response = await fetch('https://employee-management-system-three-kappa.vercel.app/addemployees', {
                 method: 'POST',
                 credentials: 'include',
                 body: formData,
