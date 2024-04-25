@@ -26,7 +26,7 @@ export default function EditEmployee() {
   useEffect(() => {
     const fetchEmployeeDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/getinfo/${employeeId}`, { 
+        const response = await fetch(`https://employee-management-system-three-kappa.vercel.app/getinfo/${employeeId}`, { 
             method : 'GET',
             credentials: 'include' });
         if (!response.ok) throw new Error('Failed to fetch employee details');
@@ -83,7 +83,7 @@ export default function EditEmployee() {
 
     const checkEmailDuplicate = async (email) => {
         try {
-            const response = await fetch(`http://localhost:5000/edit-check-email/${employeeId}`, {
+            const response = await fetch(`https://employee-management-system-three-kappa.vercel.app/edit-check-email/${employeeId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ export default function EditEmployee() {
     }
     console.log(formData);
     try {
-      const response = await fetch(`http://localhost:5000/employeedata/${employeeId}`, {
+      const response = await fetch(`https://employee-management-system-three-kappa.vercel.app/employeedata/${employeeId}`, {
         method: 'PUT',
         credentials: 'include',
         body: formData,
