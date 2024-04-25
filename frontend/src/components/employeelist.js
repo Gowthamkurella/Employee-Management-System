@@ -20,7 +20,7 @@ export default function EmployeeList() {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await fetch('http://localhost:5000/employeelist', {
+        const response = await fetch('https://employee-management-system-three-kappa.vercel.app/employeelist', {
           method: 'GET',
           credentials: 'include', // Important for sending cookies
         });
@@ -46,7 +46,7 @@ export default function EmployeeList() {
     if (window.confirm('Are you sure you want to delete this employee?')) {
       try {
         console.log(id);
-        const response = await fetch(`http://localhost:5000/deleteemployee/${id}`, {
+        const response = await fetch(`https://employee-management-system-three-kappa.vercel.app/deleteemployee/${id}`, {
           method: 'DELETE',
           credentials: 'include',
         });
