@@ -28,7 +28,7 @@ const CustomAppBar = ({ username }) => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://localhost:5000/logout', {
+      const response = await fetch('https://employee-management-system-three-kappa.vercel.app/logout', {
         method: 'POST',
         credentials: 'include', // Important for including cookies in the request
       });
