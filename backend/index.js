@@ -13,18 +13,20 @@ const emp = require('./models/t_employee');
 const AWS = require("aws-sdk");
 const multer = require("multer");
 
-const corsOptions = {
-  origin: '*',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
-app.use(cors(corsOptions));
-
 app.use((req, res, next) => {
-  console.log('CORS Headers Set: ', res.getHeaders());
+  res.setHeader('Access-Control-Allow-Origin', 'https://employee-management-system-lr1k.onrender.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
+
+
+app.use(cors());
+
+app.use(cors({
+  origin: 'https://employee-management-system-lr1k.onrender.com',
+  credentials: true
+}));
 
 const ObjectId = mongoose.Types.ObjectId;
 dotenv.config();
