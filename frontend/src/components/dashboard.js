@@ -11,7 +11,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await fetch('http://localhost:5000/dashboard', {
+        const response = await fetch('https://employee-management-system-three-kappa.vercel.app/dashboard', {
           method: 'GET',
           credentials: 'include', // Important for sending cookies
         });
