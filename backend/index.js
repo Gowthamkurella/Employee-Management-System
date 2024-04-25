@@ -14,7 +14,7 @@ const AWS = require("aws-sdk");
 const multer = require("multer");
 
 const corsOptions = {
-  origin: 'https://employee-management-system-lr1k.onrender.com',
+  origin: '*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
