@@ -37,7 +37,7 @@ app.use(session({
   saveUninitialized: true,
   httpOnly: false,
   store: MongoStore.create({ mongoUrl: 'mongodb+srv://admin:QjwWaXvnnuIZ46MY@cluster0.dteekjh.mongodb.net/' }),
-  cookie: {secure:false,
+  cookie: {secure:true,
     httpOnly:true,
      maxAge: 24 * 60 * 60 * 1000 } // 24 hours
 }));
